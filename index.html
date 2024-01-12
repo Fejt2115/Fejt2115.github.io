@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formularz</title>
+</head>
+<body>
+    <div id="container">
+    <img src="Your_Way_logo.svg" alt="Your way logo" class="logo">
+    <form id="myForm" method="post">
+        <label for="nip">NIP:</label>
+        <input type="text" id="nip" name="nip" required><br>
+        <label for="zuzycie">Zużycie:</label>
+        <input type="text" id="zuzycie" name="zuzycie" required><br>
+        <label for="czasTrwaniaUmowy">Czas Trwania Umowy:</label>
+        <input type="text" id="czasTrwaniaUmowy" name="czasTrwaniaUmowy" required><br>
+        <label for="grupaTaryfowa">Grupa Taryfowa:</label>
+        <input type="text" id="grupaTaryfowa" name="grupaTaryfowa" required><br>
+        <button type="submit" onclick="submitForm()">Wyślij</button>
+    </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            var formData = new FormData(document.getElementById("myForm"));
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "server.php", true);
+            xhr.send(formData);
+        }
+    </script>
+</body>
+</html>
