@@ -1,1 +1,0 @@
-Zwykly projekt
