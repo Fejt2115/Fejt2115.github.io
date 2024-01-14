@@ -16,12 +16,29 @@
         <input type="email" id="email" name="email" required><br>
         <label for="nrTelefonu">Numer telefonu:</label>
         <input type="text" id="nrTelefonu" name="nrTelefonu" required><br>
-        <label for="zuzycie">Zużycie:</label>
+        <label for="zuzycie">Roczne zużycie energii elektrycznej (MWh):</label>
         <input type="text" id="zuzycie" name="zuzycie" required><br>
-        <label for="czasTrwaniaUmowy">Czas Trwania Umowy:</label>
+        <label for="czasTrwaniaUmowy">Oferta na okres:</label>
         <input type="text" id="czasTrwaniaUmowy" name="czasTrwaniaUmowy" required><br>
         <label for="grupaTaryfowa">Grupa Taryfowa:</label>
-        <input type="text" id="grupaTaryfowa" name="grupaTaryfowa" required><br>
+        <select id="grupaTaryfowa" name="grupaTaryfowa" required>
+            <option value="B23">B23</option>
+            <option value="B22">B22</option>
+            <option value="B21">B21</option>
+            <option value="B12">B12</option>
+            <option value="B11">B11</option>
+            <option value="C23">C23</option>
+            <option value="C22a">C22a</option>
+            <option value="C22b">C22b</option>
+            <option value="C22w">C22w</option>
+            <option value="C21">C21</option>
+            <option value="C13">C13</option>
+            <option value="C12a">C12a</option>
+            <option value="C12b">C12b</option>
+            <option value="C12w">C12w</option>
+            <option value="C11o">C11o</option>
+            <option value="C11">C11</option>
+        </select>
         <button type="submit">Wyślij</button>
     </form>
     </div>
