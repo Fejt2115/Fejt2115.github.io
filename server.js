@@ -61,14 +61,14 @@ app.post('/obliczenia', async (req, res) => {
 
         // Odpowiedz klientowi
         res.json({
-            EneaNettoStrefa1: EneaNettoStrefa1 !== "Błąd" ? EneaNettoStrefa1 : null,
-            EneaNettoStrefa2: EneaNettoStrefa2 !== "Błąd" ? EneaNettoStrefa2 : null,
-            EneaNettoStrefa3: EneaNettoStrefa3 !== "Błąd" ? EneaNettoStrefa3 : null,
-            EneaOH: EneaOH !== "Błąd" ? EneaOH : null,
-            AxpoNettoStrefa1: AxpoNettoStrefa1 !== "Błąd" ? AxpoNettoStrefa1 : null,
-            AxpoNettoStrefa2: AxpoNettoStrefa2 !== "Błąd" ? AxpoNettoStrefa2 : null,
-            AxpoNettoStrefa3: AxpoNettoStrefa3 !== "Błąd" ? AxpoNettoStrefa3 : null,
-            AxpoOH: AxpoOH !== "Błąd" ? AxpoOH : null
+            EneaNettoStrefa1,
+            EneaNettoStrefa2,
+            EneaNettoStrefa3,
+            EneaOH,
+            AxpoNettoStrefa1,
+            AxpoNettoStrefa2,
+            AxpoNettoStrefa3,
+            AxpoOH
         });
     } catch (error) {
         console.error('Błąd podczas przetwarzania danych.', error.message);
@@ -78,5 +78,5 @@ app.post('/obliczenia', async (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Serwer działa na http://localhost:${port}`);
+    console.log(`Serwer działa na https://przelicznik.onrender.com:${port}`);
 });
