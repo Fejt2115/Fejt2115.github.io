@@ -20,9 +20,7 @@ app.post('/obliczenia', async (req, res) => {
     try {
         // Pobierz dane z żądania
         const { nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa } = req.body;
-        console.log(
-            nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa
-            )
+        
         // Wczytaj plik Excel
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile('assets/excel/kalk.xlsx');
@@ -30,19 +28,16 @@ app.post('/obliczenia', async (req, res) => {
         // Wczytaj arkusz
         const arkusz = workbook.getWorksheet("Kalkulator");
 
-        arkusz.getCell('C6').value = { text: grupaTaryfowa };
-        arkusz.getCell('I6').value = { text: grupaTaryfowa };
+        arkusz.getCell('C6').value = grupaTaryfowa.toString();
+        arkusz.getCell('I6').value = grupaTaryfowa.toString();
 
-        arkusz.getCell('C7').value = { text: czasTrwaniaUmowy.toString() };
-        arkusz.getCell('I7').value = { text: czasTrwaniaUmowy.toString() };
+        arkusz.getCell('C7').value = czasTrwaniaUmowy.toString();
+        arkusz.getCell('I7').value = czasTrwaniaUmowy.toString();
 
-        arkusz.getCell('C10').value = { text: zuzycie.toString() };
-        arkusz.getCell('I10').value = { text: zuzycie.toString() };
+        arkusz.getCell('C10').value = zuzycie.toString();
+        arkusz.getCell('I10').value = zuzycie.toString();
 
-        //await workbook.commit();
-        await workbook.xlsx.writeFile('assets/excel/kalk.xlsx');
-
-        await workbook.xlsx.readFile('assets/excel/kalk.xlsx');
+        await workbook.commit();
 
         const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
         const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
