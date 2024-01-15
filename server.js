@@ -37,7 +37,6 @@ app.post('/obliczenia', async (req, res) => {
         arkusz.getCell('C10').value = zuzycie.toString();
         arkusz.getCell('I10').value = zuzycie.toString();
 
-        await workbook.commit();
 
         const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
         const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
