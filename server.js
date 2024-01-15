@@ -20,7 +20,7 @@ app.post('/obliczenia', async (req, res) => {
     try {
         // Pobierz dane z żądania
         const { nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa } = req.body;
-        log.console(
+        console.log(
             nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa
             )
         // Wczytaj plik Excel
