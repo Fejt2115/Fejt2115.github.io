@@ -28,14 +28,14 @@ app.post('/obliczenia', async (req, res) => {
         // Wczytaj arkusz
         const arkusz = workbook.getWorksheet("Kalkulator");
 
-        arkusz.getCell('C6').text = grupaTaryfowa;
-        arkusz.getCell('I6').text = grupaTaryfowa;
+        arkusz.getCell('C6').value = { text: grupaTaryfowa };
+        arkusz.getCell('I6').value = { text: grupaTaryfowa };
 
-        arkusz.getCell('C7').text = czasTrwaniaUmowy;
-        arkusz.getCell('I7').text = czasTrwaniaUmowy;
+        arkusz.getCell('C7').value = { text: czasTrwaniaUmowy.toString() };
+        arkusz.getCell('I7').value = { text: czasTrwaniaUmowy.toString() };
 
-        arkusz.getCell('C10').text = zuzycie;
-        arkusz.getCell('I10').text = zuzycie;
+        arkusz.getCell('C10').value = { text: zuzycie.toString() };
+        arkusz.getCell('I10').value = { text: zuzycie.toString() };
 
         await workbook.commit();
 
