@@ -37,6 +37,17 @@ app.post('/obliczenia', async (req, res) => {
         arkusz.getCell('C10').value = zuzycie;
         arkusz.getCell('I10').value = zuzycie;
 
+        const gTC = arkusz.getCell('C6').value;
+        const gTA = arkusz.getCell('I6').value;
+
+        const cTUC = arkusz.getCell('C7').value;
+        const cTUA = arkusz.getCell('I7').value;
+
+        const zuzC = arkusz.getCell('C10').value;
+        const zuzA = arkusz.getCell('I10').value;
+
+        console.log(gTC, gTA, cTUC, cTUA, zuzC, zuzA);
+
 
         const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
         const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
@@ -49,15 +60,6 @@ app.post('/obliczenia', async (req, res) => {
         const AxpoOH = parseFloat(arkusz.getCell('I16').text) || "Błąd";
 
 
-        console.log('EneaNettoStrefa1:', EneaNettoStrefa1);
-        console.log('EneaNettoStrefa2:', EneaNettoStrefa2);
-        console.log('EneaNettoStrefa3:', EneaNettoStrefa3);
-        console.log('EneaOH:', EneaOH);
-
-        console.log('AxpoNettoStrefa1:', AxpoNettoStrefa1);
-        console.log('AxpoNettoStrefa2:', AxpoNettoStrefa2);
-        console.log('AxpoNettoStrefa3:', AxpoNettoStrefa3);
-        console.log('AxpoOH:', AxpoOH);
         //await workbook.xlsx.writeFile('assets/excel/kalk.xlsx');
 
         // Odpowiedz klientowi
