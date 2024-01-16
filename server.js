@@ -28,14 +28,14 @@ app.post('/obliczenia', async (req, res) => {
         // Wczytaj arkusz
         const arkusz = workbook.getWorksheet("Kalkulator");
 
-        arkusz.getCell('C6').value = grupaTaryfowa.toString();
-        arkusz.getCell('I6').value = grupaTaryfowa.toString();
+        arkusz.getCell('C6').value = grupaTaryfowa;
+        arkusz.getCell('I6').value = grupaTaryfowa;
 
-        arkusz.getCell('C7').value = czasTrwaniaUmowy.toString();
-        arkusz.getCell('I7').value = czasTrwaniaUmowy.toString();
+        arkusz.getCell('C7').value = czasTrwaniaUmowy;
+        arkusz.getCell('I7').value = czasTrwaniaUmowy;
 
-        arkusz.getCell('C10').value = zuzycie.toString();
-        arkusz.getCell('I10').value = zuzycie.toString();
+        arkusz.getCell('C10').value = zuzycie;
+        arkusz.getCell('I10').value = zuzycie;
 
 
         const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
