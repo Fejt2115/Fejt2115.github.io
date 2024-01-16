@@ -46,8 +46,7 @@ app.post('/obliczenia', async (req, res) => {
 
         console.log(gTC, gTA, cTUC, cTUA, zuzC, zuzA);
 
-        workbook.calculation = 'auto'; // Set calculation mode to automatic
-        await workbook.calculateAll();
+        workbook.xlsx.calculateSheetProperties();
 
         const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
         const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
