@@ -26,14 +26,25 @@ app.post('/obliczenia', async (req, res) => {
         // Wczytaj arkusz
         const arkusz = workbook.getWorksheet("Kalkulator");
 
-        arkusz.getCell('C6').value = grupaTaryfowa.toString();
-        arkusz.getCell('I6').value = grupaTaryfowa.toString();
+        arkusz.getCell('C6').value = grupaTaryfowa;
+        arkusz.getCell('I6').value = grupaTaryfowa;
 
-        arkusz.getCell('C7').value = czasTrwaniaUmowy.toString();
-        arkusz.getCell('I7').value = czasTrwaniaUmowy.toString();
+        arkusz.getCell('C7').value = czasTrwaniaUmowy;
+        arkusz.getCell('I7').value = czasTrwaniaUmowy;
 
-        arkusz.getCell('C10').value = zuzycie.toString();
-        arkusz.getCell('I10').value = zuzycie.toString();
+        arkusz.getCell('C10').value = zuzycie;
+        arkusz.getCell('I10').value = zuzycie;
+
+        const gTC = arkusz.getCell('C6').value;
+        const gTA = arkusz.getCell('I6').value;
+
+        const cTUC = arkusz.getCell('C7').value;
+        const cTUA = arkusz.getCell('I7').value;
+
+        const zuzC = arkusz.getCell('C10').value;
+        const zuzA = arkusz.getCell('I10').value;
+
+        console.log(gTC, gTA, cTUC, cTUA, zuzC, zuzA);
 
         workbook.calculation = 'auto'; // Set calculation mode to automatic
         await workbook.calculateAll();
@@ -49,15 +60,6 @@ app.post('/obliczenia', async (req, res) => {
         const AxpoOH = parseFloat(arkusz.getCell('I16').text) || "Błąd";
 
 
-        console.log('EneaNettoStrefa1:', EneaNettoStrefa1);
-        console.log('EneaNettoStrefa2:', EneaNettoStrefa2);
-        console.log('EneaNettoStrefa3:', EneaNettoStrefa3);
-        console.log('EneaOH:', EneaOH);
-
-        console.log('AxpoNettoStrefa1:', AxpoNettoStrefa1);
-        console.log('AxpoNettoStrefa2:', AxpoNettoStrefa2);
-        console.log('AxpoNettoStrefa3:', AxpoNettoStrefa3);
-        console.log('AxpoOH:', AxpoOH);
         //await workbook.xlsx.writeFile('assets/excel/kalk.xlsx');
 
         // Odpowiedz klientowi
