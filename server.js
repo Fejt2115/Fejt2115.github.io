@@ -1,4 +1,3 @@
-// submit-form.js
 import express from 'express';
 import bodyParser from 'body-parser';
 import ExcelJS from 'exceljs';
@@ -15,7 +14,6 @@ app.get('/obliczenia', (req, res) => {
     res.send('To jest ścieżka GET /obliczenia. Wysyłaj zapytania POST, aby przetworzyć dane.');
 });
 
-// submit-form.js
 app.post('/obliczenia', async (req, res) => {
     try {
         // Pobierz dane z żądania
@@ -37,6 +35,8 @@ app.post('/obliczenia', async (req, res) => {
         arkusz.getCell('C10').value = zuzycie.toString();
         arkusz.getCell('I10').value = zuzycie.toString();
 
+        workbook.calculation = 'auto'; // Set calculation mode to automatic
+        await workbook.calculateAll();
 
         const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
         const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
