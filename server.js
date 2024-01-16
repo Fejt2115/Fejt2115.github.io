@@ -46,16 +46,22 @@ app.post('/obliczenia', async (req, res) => {
 
         console.log(gTC, gTA, cTUC, cTUA, zuzC, zuzA);
 
-        workbook.xlsx.calculateSheetProperties();
-
+        
+        arkusz.getCell('C13').calculateValue();
         const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
+        arkusz.getCell('C14').calculateValue();
         const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
+        arkusz.getCell('C15').calculateValue();
         const EneaNettoStrefa3 = parseFloat(arkusz.getCell('C15').text) || "Błąd";
+        arkusz.getCell('C16').calculateValue();
         const EneaOH = parseFloat(arkusz.getCell('C16').text) || "Błąd";
-
+        arkusz.getCell('I13').calculateValue();
         const AxpoNettoStrefa1 = parseFloat(arkusz.getCell('I13').text) || "Błąd";
+        arkusz.getCell('I14').calculateValue();
         const AxpoNettoStrefa2 = parseFloat(arkusz.getCell('I14').text) || "Błąd";
+        arkusz.getCell('I15').calculateValue();
         const AxpoNettoStrefa3 = parseFloat(arkusz.getCell('I15').text) || "Błąd";
+        arkusz.getCell('I16').calculateValue();
         const AxpoOH = parseFloat(arkusz.getCell('I16').text) || "Błąd";
 
 
