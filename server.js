@@ -47,15 +47,15 @@ app.post('/obliczenia', async (req, res) => {
         console.log(gTC, gTA, cTUC, cTUA, zuzC, zuzA);
 
         
-        //const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
-        //const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
-        //const EneaNettoStrefa3 = parseFloat(arkusz.getCell('C15').text) || "Błąd";
-        //const EneaOH = parseFloat(arkusz.getCell('C16').text) || "Błąd";
+        const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
+        const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
+        const EneaNettoStrefa3 = parseFloat(arkusz.getCell('C15').text) || "Błąd";
+        const EneaOH = parseFloat(arkusz.getCell('C16').text) || "Błąd";
 
-        //const AxpoNettoStrefa1 = parseFloat(arkusz.getCell('I13').text) || "Błąd";
-        //const AxpoNettoStrefa2 = parseFloat(arkusz.getCell('I14').text) || "Błąd";
-        //const AxpoNettoStrefa3 = parseFloat(arkusz.getCell('I15').text) || "Błąd";
-        //const AxpoOH = parseFloat(arkusz.getCell('I16').text) || "Błąd";
+        const AxpoNettoStrefa1 = parseFloat(arkusz.getCell('I13').text) || "Błąd";
+        const AxpoNettoStrefa2 = parseFloat(arkusz.getCell('I14').text) || "Błąd";
+        const AxpoNettoStrefa3 = parseFloat(arkusz.getCell('I15').text) || "Błąd";
+        const AxpoOH = parseFloat(arkusz.getCell('I16').text) || "Błąd";
 
 
         const tempFilePath = 'assets/excel/temp.xlsx';
