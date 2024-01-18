@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import ExcelJS from 'exceljs';
 import cors from 'cors';
-import HyperFormula from 'hyperformula';
 
 
 const app = express();
@@ -51,19 +50,18 @@ app.post('/obliczenia', async (req, res) => {
         const tempFilePath = 'assets/excel/temp.xlsx';
         await workbook.xlsx.writeFile(tempFilePath);
 
-        // Recalculate formulas using hyperformula
-        const updatedWorkbook = await recalculateFormulas(tempFilePath);
+        
 
         // Extract values after recalculation
-        const EneaNettoStrefa1 = parseFloat(updatedWorkbook.getCell('C13').text) || "Błąd";
-        const EneaNettoStrefa2 = parseFloat(updatedWorkbook.getCell('C14').text) || "Błąd";
-        const EneaNettoStrefa3 = parseFloat(updatedWorkbook.getCell('C15').text) || "Błąd";
-        const EneaOH = parseFloat(updatedWorkbook.getCell('C16').text) || "Błąd";
+        const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
+        const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
+        const EneaNettoStrefa3 = parseFloat(arkusz.getCell('C15').text) || "Błąd";
+        const EneaOH = parseFloat(arkusz.getCell('C16').text) || "Błąd";
 
-        const AxpoNettoStrefa1 = parseFloat(updatedWorkbook.getCell('I13').text) || "Błąd";
-        const AxpoNettoStrefa2 = parseFloat(updatedWorkbook.getCell('I14').text) || "Błąd";
-        const AxpoNettoStrefa3 = parseFloat(updatedWorkbook.getCell('I15').text) || "Błąd";
-        const AxpoOH = parseFloat(updatedWorkbook.getCell('I16').text) || "Błąd";
+        const AxpoNettoStrefa1 = parseFloat(arkusz.getCell('I13').text) || "Błąd";
+        const AxpoNettoStrefa2 = parseFloat(arkusz.getCell('I14').text) || "Błąd";
+        const AxpoNettoStrefa3 = parseFloat(arkusz.getCell('I15').text) || "Błąd";
+        const AxpoOH = parseFloat(arkusz.getCell('I16').text) || "Błąd";
 
 
         // Odpowiedz klientowi
@@ -87,12 +85,3 @@ app.post('/obliczenia', async (req, res) => {
 app.listen(port, () => {
     console.log(`Serwer działa na https://przelicznik.onrender.com:${port}`);
 });
-
-async function recalculateFormulas(filePath) {
-    const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.readFile(filePath);
-
-    const updatedWorkbook = await HyperFormula.evaluateWorkbook(workbook);
-
-    return updatedWorkbook;
-}
