@@ -17,7 +17,7 @@ app.get('/obliczenia', (req, res) => {
 app.post('/obliczenia', async (req, res) => {
     try {
         // Pobierz dane z żądania
-        const { nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa } = req.body;
+        const { zuzycie, czasTrwaniaUmowy, grupaTaryfowa } = req.body;
         
         // Wczytaj plik Excel
         const workbook = new ExcelJS.Workbook();
@@ -35,16 +35,16 @@ app.post('/obliczenia', async (req, res) => {
         arkusz.getCell('C10').value = zuzycie;
         arkusz.getCell('I10').value = zuzycie;
 
-        const gTC = arkusz.getCell('C6').value;
-        const gTA = arkusz.getCell('I6').value;
+        //const gTC = arkusz.getCell('C6').value;
+        //const gTA = arkusz.getCell('I6').value;
 
-        const cTUC = arkusz.getCell('C7').value;
-        const cTUA = arkusz.getCell('I7').value;
+        //const cTUC = arkusz.getCell('C7').value;
+        //const cTUA = arkusz.getCell('I7').value;
 
-        const zuzC = arkusz.getCell('C10').value;
-        const zuzA = arkusz.getCell('I10').value;
+        //const zuzC = arkusz.getCell('C10').value;
+        //const zuzA = arkusz.getCell('I10').value;
 
-        console.log(gTC, gTA, cTUC, cTUA, zuzC, zuzA);
+        //console.log(gTC, gTA, cTUC, cTUA, zuzC, zuzA);
 
         
         const tempFilePath = 'assets/excel/temp.xlsx';
