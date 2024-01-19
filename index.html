@@ -63,20 +63,15 @@
     </div>
 
     <script>
-        function submitStep1Form() {
-            document.getElementById('step1Form').style.display = 'none';
-            document.getElementById('step2Form').style.display = 'block';
-            document.getElementById('gowno').innerText = "Zostaw do siebie kontakt";
-            showPopup();
-        }
+        
 
         async function submitForm(event) {
             event.preventDefault();
 
             // Pobierz dane z formularza
-            const nip = document.getElementById('nip').value;
-            const email = document.getElementById('email').value;
-            const nrTelefonu = document.getElementById('nrTelefonu').value;
+            //const nip = document.getElementById('nip').value;
+            //const email = document.getElementById('email').value;
+            //const nrTelefonu = document.getElementById('nrTelefonu').value;
             const zuzycie = parseFloat(document.getElementById('zuzycie').value);
             const czasTrwaniaUmowy = parseInt(document.getElementById('czasTrwaniaUmowy').value);
             const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
@@ -88,9 +83,6 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    nip,
-                    email,
-                    nrTelefonu,
                     zuzycie,
                     czasTrwaniaUmowy,
                     grupaTaryfowa,
@@ -105,6 +97,13 @@
             } else {
                 console.error('Błąd podczas przetwarzania danych.');
             }
+        }
+        function submitStep1Form(event) {
+            document.getElementById('step1Form').style.display = 'none';
+            document.getElementById('step2Form').style.display = 'block';
+            document.getElementById('gowno').innerText = "Zostaw do siebie kontakt";
+            showPopup();
+            submitForm(event);
         }
 
         function showContactForm(event) {
