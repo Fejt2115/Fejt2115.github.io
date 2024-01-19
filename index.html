@@ -8,7 +8,14 @@
 </head>
 <body>
     <div id="container">
-        <h1 id="glowa">Porównywarka</h1>
+        <div id="gowno">Porównywarka</div>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                <p>Wyniki ceny:</p>
+                
+            </div>
+        </div>
         <form id="step1Form" onsubmit="return showContactForm(event)">
             <label for="czasTrwaniaUmowy">Oferta na okres:</label>
             <select id="czasTrwaniaUmowy" name="czasTrwaniaUmowy" required>
@@ -59,6 +66,8 @@
         function submitStep1Form() {
             document.getElementById('step1Form').style.display = 'none';
             document.getElementById('step2Form').style.display = 'block';
+            document.getElementById('gowno').innerText = "Zostaw do siebie kontakt";
+            showPopup();
         }
 
         async function submitForm(event) {
@@ -99,20 +108,28 @@
         }
 
         function showContactForm(event) {
-            event.preventDefault();
-            document.getElementById('step1Form').style.display = 'none';
-            document.getElementById('step2Form').style.display = 'block';
-            document.getElementById('glowa').innerText='Zostaw do siebie kontakt, a nasz x sie do Ciebie odezwie :)';
+        event.preventDefault();
+        document.getElementById('step1Form').style.display = 'none';
+        document.getElementById('step2Form').style.display = 'block';
+        document.getElementById('gowno').innerText = "Zostaw do siebie kontakt";
         }
 
         function onRefresh() {
             document.getElementById('step1Form').style.display = 'block';
             document.getElementById('step2Form').style.display = 'none';
-            document.getElementById('glowa').innerText='Porownywarka';
+            document.getElementById('gowno').innerText = "Porównywarka";
         }
 
+        function showPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        // Funkcja zamykająca popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
         // Wywołaj onRefresh() na załadowaniu strony
-        window.onload = onRefresh();
+        window.onload = onRefresh
     </script>
     </script>
 </body>
