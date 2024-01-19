@@ -13,7 +13,6 @@
             <div class="popup-content">
                 <span class="close-btn" onclick="closePopup()">&times;</span>
                 <p>Wyniki ceny:</p>
-                
             </div>
         </div>
         <form id="step1Form" onsubmit="return showContactForm(event)">
@@ -63,20 +62,12 @@
     </div>
 
     <script>
-        
-
         async function submitForm(event) {
             event.preventDefault();
-
-            // Pobierz dane z formularza
-            //const nip = document.getElementById('nip').value;
-            //const email = document.getElementById('email').value;
-            //const nrTelefonu = document.getElementById('nrTelefonu').value;
             const zuzycie = parseFloat(document.getElementById('zuzycie').value);
             const czasTrwaniaUmowy = parseInt(document.getElementById('czasTrwaniaUmowy').value);
             const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
 
-            // Wyślij dane do serwera
             const response = await fetch('http://localhost:3000/obliczenia', {
                 method: 'POST',
                 headers: {
@@ -90,27 +81,32 @@
             });
 
             if (response.ok) {
-                // Pobierz odpowiedź z serwera
                 const data = await response.json();
                 console.log(data);
-                // Tutaj możesz dodać kod do aktualizacji interfejsu użytkownika lub wykonania innych działań po otrzymaniu wyniku
             } else {
                 console.error('Błąd podczas przetwarzania danych.');
             }
         }
-        function submitStep1Form(event) {
-            document.getElementById('step1Form').style.display = 'none';
-            document.getElementById('step2Form').style.display = 'block';
-            document.getElementById('gowno').innerText = "Zostaw do siebie kontakt";
+
+        function submitStep1Form() {
+            const zuzycie = parseFloat(document.getElementById('zuzycie').value);
+            const czasTrwaniaUmowy = parseInt(document.getElementById('czasTrwaniaUmowy').value);
+            const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
+
+            document.getElementById('popup').querySelector('p').innerText = `
+                Roczne zużycie energii elektrycznej (MWh): ${zuzycie}
+                Czas trwania umowy: ${czasTrwaniaUmowy}
+                Grupa Taryfowa: ${grupaTaryfowa}
+            `;
+
             showPopup();
-            submitForm(event);
         }
 
         function showContactForm(event) {
-        event.preventDefault();
-        document.getElementById('step1Form').style.display = 'none';
-        document.getElementById('step2Form').style.display = 'block';
-        document.getElementById('gowno').innerText = "Zostaw do siebie kontakt";
+            event.preventDefault();
+            document.getElementById('step1Form').style.display = 'none';
+            document.getElementById('step2Form').style.display = 'block';
+            document.getElementById('gowno').innerText = "Zostaw do siebie kontakt";
         }
 
         function onRefresh() {
@@ -123,13 +119,11 @@
             document.getElementById('popup').style.display = 'flex';
         }
 
-        // Funkcja zamykająca popup
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
-        // Wywołaj onRefresh() na załadowaniu strony
-        window.onload = onRefresh
-    </script>
+
+        window.onload = onRefresh;
     </script>
 </body>
 </html>
