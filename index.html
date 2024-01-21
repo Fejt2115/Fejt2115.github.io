@@ -8,7 +8,24 @@
 </head>
 <body>
     <div id="container">
-        <h1 id="glowa">Porównywarka</h1>
+
+        <div id="gowno">Porównywarka</div>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                <p></p>
+                <form id="step2Form" style="display:none;" onsubmit="return submitForm(event)">
+                    <h2>Zostaw do siebie kontakt, a odezwiemy się do Ciebie</h2>
+                    <label for="nip">NIP:</label>
+                    <input type="text" id="nip" name="nip" required><br>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required><br>
+                    <label for="nrTelefonu">Numer telefonu:</label>
+                    <input type="text" id="nrTelefonu" name="nrTelefonu" required><br>
+                    <button type="submit">Wyślij</button>
+                </form>
+            </div>
+        </div>
         <form id="step1Form" onsubmit="return showContactForm(event)">
             <label for="czasTrwaniaUmowy">Oferta na okres:</label>
             <select id="czasTrwaniaUmowy" name="czasTrwaniaUmowy" required>
@@ -43,45 +60,25 @@
             <input type="text" id="zuzycie" name="zuzycie" required><br>
             <button type="button" onclick="submitStep1Form()">Dalej</button>
         </form>
-
-        <form id="step2Form" style="display:none;" onsubmit="return submitForm(event)">
-            <label for="nip">NIP:</label>
-            <input type="text" id="nip" name="nip" required><br>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required><br>
-            <label for="nrTelefonu">Numer telefonu:</label>
-            <input type="text" id="nrTelefonu" name="nrTelefonu" required><br>
-            <button type="submit">Wyślij</button>
-        </form>
+        
     </div>
-
+    <div id="loading-spinner" class="spinner" style="display: none;"></div>
     <script>
-        function submitStep1Form() {
-            document.getElementById('step1Form').style.display = 'none';
-            document.getElementById('step2Form').style.display = 'block';
-        }
-
         async function submitForm(event) {
-            event.preventDefault();
+        event.preventDefault();
+        const zuzycie = parseFloat(document.getElementById('zuzycie').value);
+        const czasTrwaniaUmowy = parseInt(document.getElementById('czasTrwaniaUmowy').value);
+        const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
 
-            // Pobierz dane z formularza
-            const nip = document.getElementById('nip').value;
-            const email = document.getElementById('email').value;
-            const nrTelefonu = document.getElementById('nrTelefonu').value;
-            const zuzycie = parseFloat(document.getElementById('zuzycie').value);
-            const czasTrwaniaUmowy = parseInt(document.getElementById('czasTrwaniaUmowy').value);
-            const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
+        showLoadingSpinner();
 
-            // Wyślij dane do serwera
+        try {
             const response = await fetch('http://localhost:3000/obliczenia', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    nip,
-                    email,
-                    nrTelefonu,
                     zuzycie,
                     czasTrwaniaUmowy,
                     grupaTaryfowa,
@@ -89,31 +86,59 @@
             });
 
             if (response.ok) {
-                // Pobierz odpowiedź z serwera
                 const data = await response.json();
-                console.log(data);
-                // Tutaj możesz dodać kod do aktualizacji interfejsu użytkownika lub wykonania innych działań po otrzymaniu wyniku
+                displayResultInPopup(data);
             } else {
                 console.error('Błąd podczas przetwarzania danych.');
             }
+        } catch (error) {
+            console.error('Wystąpił błąd:', error);
+        } finally {
+            // Hide loading spinner after the response is received
+            hideLoadingSpinner();
+        }
+    }
+    function showLoadingSpinner() {
+        const spinner = document.getElementById('loading-spinner');
+        spinner.style.display = 'block';
+    }
+
+    function hideLoadingSpinner() {
+        const spinner = document.getElementById('loading-spinner');
+        spinner.style.display = 'none';
+    }
+    function displayResultInPopup(data) {
+        const resultContainer = document.getElementById('popup').querySelector('p');
+        resultContainer.innerText = `Wyniki ceny: ${data.cena}`;
+        
+        document.getElementById('step2Form').style.display = 'block';
+        showPopup();
+    }
+
+        function submitStep1Form() {
+            submitForm(event);
+            showPopup();
         }
 
         function showContactForm(event) {
             event.preventDefault();
             document.getElementById('step1Form').style.display = 'none';
             document.getElementById('step2Form').style.display = 'block';
-            document.getElementById('glowa').innerText='Zostaw do siebie kontakt, a nasz x sie do Ciebie odezwie :)';
         }
 
         function onRefresh() {
             document.getElementById('step1Form').style.display = 'block';
             document.getElementById('step2Form').style.display = 'none';
-            document.getElementById('glowa').innerText='Porownywarka';
         }
 
-        // Wywołaj onRefresh() na załadowaniu strony
-        window.onload = onRefresh();
-    </script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+        window.onload = onRefresh;
     </script>
 </body>
 </html>
