@@ -60,7 +60,7 @@ app.post('/obliczenia', async (req, res) => {
             service: 'gmail',
             auth: {
                 user: 'paktofonikka@gmail.com',
-                pass: 'Kasztan@2115'
+                pass: ''
             }
         });
 
