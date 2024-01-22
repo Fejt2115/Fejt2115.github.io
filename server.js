@@ -36,7 +36,7 @@ app.post('/obliczenia', async (req, res) => {
         arkusz.getCell('I10').value = zuzycie;
 
         // Stwórz instancję HyperFormula
-        const hfInstance = HyperFormula.buildFromSheets({});
+        const hfInstance = hyperformula.buildFromSheets({});
 
         // Oblicz wartości komórek za pomocą HyperFormula
         const formulaCellAddresses = ['C13', 'C14', 'C15', 'C16', 'I13', 'I14', 'I15', 'I16'];
