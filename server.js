@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import ExcelJS from 'exceljs';
 import cors from 'cors';
-import hyperformula from 'hyperformula';
+import HyperFormula from 'hyperformula';
 
 const app = express();
 const port = 3000;
@@ -36,7 +36,7 @@ app.post('/obliczenia', async (req, res) => {
         arkusz.getCell('I10').value = zuzycie;
 
         // Stwórz instancję HyperFormula
-        const hfInstance = hyperformula.buildFromSheets({});
+        const hfInstance = HyperFormula.buildFromSheets({});
 
         // Oblicz wartości komórek za pomocą HyperFormula
         const formulaCellAddresses = ['C13', 'C14', 'C15', 'C16', 'I13', 'I14', 'I15', 'I16'];
