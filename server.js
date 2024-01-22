@@ -1,8 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import ExcelJS from 'exceljs';
+import nodemailer from 'nodemailer';
 import cors from 'cors';
-import HyperFormula from 'hyperformula';
 
 const app = express();
 const port = 3000;
@@ -19,45 +18,17 @@ app.post('/obliczenia', async (req, res) => {
         // Pobierz dane z żądania
         const { zuzycie, czasTrwaniaUmowy, grupaTaryfowa } = req.body;
 
-        // Wczytaj plik Excel
-        const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile('assets/excel/kalk.xlsx');
+        // Wykonaj obliczenia bezpośrednio w kodzie
+        // Zastąp ten fragment kodu własnymi obliczeniami
+        const EneaNettoStrefa1 = 10; // Przykładowa wartość
+        const EneaNettoStrefa2 = 20; // Przykładowa wartość
+        const EneaNettoStrefa3 = 30; // Przykładowa wartość
+        const EneaOH = 5; // Przykładowa wartość
 
-        // Wczytaj arkusz
-        const arkusz = workbook.getWorksheet("Kalkulator");
-
-        arkusz.getCell('C6').value = grupaTaryfowa;
-        arkusz.getCell('I6').value = grupaTaryfowa;
-
-        arkusz.getCell('C7').value = czasTrwaniaUmowy;
-        arkusz.getCell('I7').value = czasTrwaniaUmowy;
-
-        arkusz.getCell('C10').value = zuzycie;
-        arkusz.getCell('I10').value = zuzycie;
-
-        // Stwórz instancję HyperFormula
-        const hfInstance = HyperFormula.buildFromSheets({});
-
-        // Oblicz wartości komórek za pomocą HyperFormula
-        const formulaCellAddresses = ['C13', 'C14', 'C15', 'C16', 'I13', 'I14', 'I15', 'I16'];
-
-        formulaCellAddresses.forEach(cellAddress => {
-            hfInstance.calculateFormula(arkusz.getCell(cellAddress).formula, arkusz.id);
-        });
-
-        const tempFilePath = 'assets/excel/temp.xlsx';
-        await workbook.xlsx.writeFile(tempFilePath);
-
-        // Extract values after recalculation
-        const EneaNettoStrefa1 = parseFloat(arkusz.getCell('C13').text) || "Błąd";
-        const EneaNettoStrefa2 = parseFloat(arkusz.getCell('C14').text) || "Błąd";
-        const EneaNettoStrefa3 = parseFloat(arkusz.getCell('C15').text) || "Błąd";
-        const EneaOH = parseFloat(arkusz.getCell('C16').text) || "Błąd";
-
-        const AxpoNettoStrefa1 = parseFloat(arkusz.getCell('I13').text) || "Błąd";
-        const AxpoNettoStrefa2 = parseFloat(arkusz.getCell('I14').text) || "Błąd";
-        const AxpoNettoStrefa3 = parseFloat(arkusz.getCell('I15').text) || "Błąd";
-        const AxpoOH = parseFloat(arkusz.getCell('I16').text) || "Błąd";
+        const AxpoNettoStrefa1 = 15; // Przykładowa wartość
+        const AxpoNettoStrefa2 = 25; // Przykładowa wartość
+        const AxpoNettoStrefa3 = 35; // Przykładowa wartość
+        const AxpoOH = 8; // Przykładowa wartość
 
         // Odpowiedz klientowi
         res.json({
@@ -70,6 +41,45 @@ app.post('/obliczenia', async (req, res) => {
             AxpoNettoStrefa3,
             AxpoOH
         });
+
+        // Przygotuj treść maila
+        const mailContent = `
+            Enea Netto Strefa 1: ${EneaNettoStrefa1}
+            Enea Netto Strefa 2: ${EneaNettoStrefa2}
+            Enea Netto Strefa 3: ${EneaNettoStrefa3}
+            Enea OH: ${EneaOH}
+
+            Axpo Netto Strefa 1: ${AxpoNettoStrefa1}
+            Axpo Netto Strefa 2: ${AxpoNettoStrefa2}
+            Axpo Netto Strefa 3: ${AxpoNettoStrefa3}
+            Axpo OH: ${AxpoOH}
+        `;
+
+        // Konfiguruj transporter mailowy
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'paktofonikka@gmail.com',
+                pass: 'Kasztan@2115'
+            }
+        });
+
+        // Przygotuj opcje maila
+        const mailOptions = {
+            from: 'paktofonikka@gmail.com',
+            to: 'fejcikk@example.com',
+            subject: 'Wyniki obliczeń',
+            text: mailContent
+        };
+
+        // Wyślij maila
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.error('Błąd podczas wysyłania maila:', error);
+            } else {
+                console.log('Mail wysłany:', info.response);
+            }
+        });
     } catch (error) {
         console.error('Błąd podczas przetwarzania danych.', error.message);
         res.status(500).json({ error: 'Błąd serwera' });
@@ -77,5 +87,5 @@ app.post('/obliczenia', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Serwer działa na https://przelicznik.onrender.com:${port}`);
+    console.log(`Serwer działa na http://localhost:${port}`);
 });
