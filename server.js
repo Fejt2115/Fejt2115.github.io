@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import ExcelJS from 'exceljs';
 import cors from 'cors';
-import hyperformula from 'hyper-formula';
+import hyperformula from 'hyperformula';
 
 const app = express();
 const port = 3000;
