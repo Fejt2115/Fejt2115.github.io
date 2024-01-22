@@ -7,9 +7,7 @@ import hyperformula from 'hyperformula';
 const app = express();
 const port = 3000;
 
-app.use(cors({
-    origin: 'https://przelicznik.onrender.com',
-}));
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/obliczenia', (req, res) => {
