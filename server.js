@@ -35,11 +35,14 @@ app.post('/obliczenia', async (req, res) => {
         arkusz.getCell('C10').value = zuzycie;
         arkusz.getCell('I10').value = zuzycie;
 
+        // Stwórz instancję HyperFormula
+        const hfInstance = HyperFormula.buildFromSheets({});
+
         // Oblicz wartości komórek za pomocą HyperFormula
         const formulaCellAddresses = ['C13', 'C14', 'C15', 'C16', 'I13', 'I14', 'I15', 'I16'];
 
         formulaCellAddresses.forEach(cellAddress => {
-            hyperformula.calculateFormula(arkusz.getCell(cellAddress).formula, arkusz.id);
+            hfInstance.calculateFormula(arkusz.getCell(cellAddress).formula, arkusz.id);
         });
 
         const tempFilePath = 'assets/excel/temp.xlsx';
