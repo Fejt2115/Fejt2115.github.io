@@ -14,7 +14,7 @@
             <div class="popup-content">
                 <span class="close-btn" onclick="closePopup()">&times;</span>
                 <p></p>
-                <form id="step2Form" style="display:none;" onsubmit="return submitForm(event)">
+                <form id="step2Form" style="display:none;" onsubmit="return wyslijMail(event)">
                     <h2>Zostaw do siebie kontakt, a odezwiemy się do Ciebie</h2>
                     <label for="nip">NIP:</label>
                     <input type="text" id="nip" name="nip" required><br>
@@ -65,59 +65,95 @@
     <div id="loading-spinner" class="spinner" style="display: none;"></div>
     <script>
         async function submitForm(event) {
-        event.preventDefault();
-        const zuzycie = parseFloat(document.getElementById('zuzycie').value);
-        const czasTrwaniaUmowy = parseInt(document.getElementById('czasTrwaniaUmowy').value);
-        const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
+            showLoadingSpinner();
+            event.preventDefault();
+            const zuzycie = parseFloat(document.getElementById('zuzycie').value);
+            const czasTrwaniaUmowy = document.getElementById('czasTrwaniaUmowy').value;
+            const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
 
-        showLoadingSpinner();
+            
 
-        try {
-            const response = await fetch('https://przelicznik.onrender.com/obliczenia', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    zuzycie,
-                    czasTrwaniaUmowy,
-                    grupaTaryfowa,
-                }),
-            });
+            try {
+                const response = await fetch('https://przelicznik.onrender.com/obliczenia', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        zuzycie,
+                        czasTrwaniaUmowy,
+                        grupaTaryfowa,
+                    }),
+                });
 
-            if (response.ok) {
-                const data = await response.json();
-                displayResultInPopup(data);
-            } else {
-                console.error('Błąd podczas przetwarzania danych.');
+                if (response.ok) {
+                    const data = await response.json();
+                    displayResultInPopup(data);
+                } else {
+                    console.error('Błąd podczas przetwarzania danych.');
+                }
+            } catch (error) {
+                console.error('Wystąpił błąd:', error);
+            } finally {
+                // Hide loading spinner after the response is received
+                hideLoadingSpinner();
             }
-        } catch (error) {
-            console.error('Wystąpił błąd:', error);
-        } finally {
-            // Hide loading spinner after the response is received
-            hideLoadingSpinner();
         }
-    }
-    function showLoadingSpinner() {
-        const spinner = document.getElementById('loading-spinner');
-        spinner.style.display = 'block';
-    }
+        async function wyslijMail(event) {
+            event.preventDefault();
 
-    function hideLoadingSpinner() {
-        const spinner = document.getElementById('loading-spinner');
-        spinner.style.display = 'none';
-    }
-    function displayResultInPopup(data) {
-        const resultContainer = document.getElementById('popup').querySelector('p');
-        resultContainer.innerText = `Wyniki ceny: ${data.cena}`;
-        
-        document.getElementById('step2Form').style.display = 'block';
-        showPopup();
-    }
+            const nip = document.getElementById('nip').value;
+            const email = document.getElementById('email').value;
+            const nrTelefonu = document.getElementById('nrTelefonu').value;
+            const zuzycie = parseFloat(document.getElementById('zuzycie').value);
+            const czasTrwaniaUmowy = document.getElementById('czasTrwaniaUmowy').value;
+            const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
+
+            try {
+                const response = await fetch('https://przelicznik.onrender.com/wyslij-mail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        nip,
+                        email,
+                        nrTelefonu,
+                        zuzycie,
+                        czasTrwaniaUmowy,
+                        grupaTaryfowa
+                    }),
+                });
+
+                if (response.ok) {
+                    console.log('Mail został wysłany pomyślnie.');
+                } else {
+                    console.error('Błąd podczas wysyłania maila.');
+                }
+            } catch (error) {
+                console.error('Wystąpił błąd:', error);
+            }
+        }
+
+        function showLoadingSpinner() {
+            const spinner = document.getElementById('loading-spinner');
+            spinner.style.display = 'block';
+        }
+        function hideLoadingSpinner() {
+            const spinner = document.getElementById('loading-spinner');
+            spinner.style.display = 'none';
+        }
+        function displayResultInPopup(data) {
+            const resultContainer = document.getElementById('popup').querySelector('p');
+            resultContainer.innerText = `Wyniki ceny: ${data.cena}`;
+            
+            document.getElementById('step2Form').style.display = 'block';
+            showPopup();
+        }
 
         function submitStep1Form() {
-            submitForm(event);
             showPopup();
+            submitForm(event);
         }
 
         function showContactForm(event) {
