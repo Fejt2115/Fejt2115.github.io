@@ -83,7 +83,7 @@ app.post('/obliczenia', async (req, res) => {
 
 app.post('/wyslij-mail', async (req, res) => {
     try {
-        const { nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa} = req.body;
+        const { nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa, wynikiObliczen} = req.body;
 
         // Przygotuj opcje maila
         const transporter = nodemailer.createTransport({
@@ -99,9 +99,19 @@ app.post('/wyslij-mail', async (req, res) => {
             from: 'fejcikk@gmail.com',
             to: 'mszoltyski@gmail.com',
             subject: 'Obliczenie wyników',
-            text: `Treść wiadomości:\nNIP: "${nip}"\nNumer telefonu: "${nrTelefonu}"
-                \nEmail: "${email}"\nZużycie: "${zuzycie}"\nCzas Trwania Umowy: "${czasTrwaniaUmowy}"
-                \nGrupa Taryfowa: "${grupaTaryfowa}"`
+            text: `Treść wiadomości:
+            \nNIP: "${nip}"\nNumer telefonu: "${nrTelefonu}"\nEmail: "${email}"
+            \nZużycie: "${zuzycie}"\nCzas Trwania Umowy: "${czasTrwaniaUmowy}"\nGrupa Taryfowa: "${grupaTaryfowa}"
+            \nWyniki obliczeń:
+            Enea Netto Strefa 1: ${wynikiObliczen.EneaNettoStrefa1}
+            Enea Netto Strefa 2: ${wynikiObliczen.EneaNettoStrefa2}
+            Enea Netto Strefa 3: ${wynikiObliczen.EneaNettoStrefa3}
+            Enea OH: ${wynikiObliczen.EneaOH}
+
+            Axpo Netto Strefa 1: ${wynikiObliczen.AxpoNettoStrefa1}
+            Axpo Netto Strefa 2: ${wynikiObliczen.AxpoNettoStrefa2}
+            Axpo Netto Strefa 3: ${wynikiObliczen.AxpoNettoStrefa3}
+            Axpo OH: ${wynikiObliczen.AxpoOH}`
         };
 
         // Wyślij maila
