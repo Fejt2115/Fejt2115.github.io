@@ -65,6 +65,7 @@
     <div id="loading-spinner" class="spinner" style="display: none;"></div>
     <script>
         async function submitForm(event) {
+            let wynikiObliczen = null;
             showLoadingSpinner();
             event.preventDefault();
             const zuzycie = parseFloat(document.getElementById('zuzycie').value);
@@ -88,6 +89,7 @@
 
                 if (response.ok) {
                     const data = await response.json();
+                    wynikiObliczen = data;
                     displayResultInPopup(data);
                 } else {
                     console.error('Błąd podczas przetwarzania danych.');
@@ -109,30 +111,36 @@
             const czasTrwaniaUmowy = document.getElementById('czasTrwaniaUmowy').value;
             const grupaTaryfowa = document.getElementById('grupaTaryfowa').value;
 
-            try {
-                const response = await fetch('https://przelicznik.onrender.com/wyslij-mail', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
+            if (wynikiObliczen) {
+                try {
+                    const response = await fetch('https://przelicznik.onrender.com/wyslij-mail', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
                         nip,
                         email,
                         nrTelefonu,
                         zuzycie,
                         czasTrwaniaUmowy,
-                        grupaTaryfowa
-                    }),
-                });
+                        grupaTaryfowa,
+                        wynikiObliczen
+                        }),
+                    });
 
-                if (response.ok) {
-                    console.log('Mail został wysłany pomyślnie.');
-                } else {
-                    console.error('Błąd podczas wysyłania maila.');
+                    if (response.ok) {
+                        console.log('Mail został wysłany pomyślnie.');
+                    } else {
+                        console.error('Błąd podczas wysyłania maila.');
+                    }
+                } catch (error) {
+                    console.error('Wystąpił błąd:', error);
                 }
-            } catch (error) {
-                console.error('Wystąpił błąd:', error);
+            } else {
+                console.error('Wyniki obliczeń są niezdefiniowane.');
             }
+
         }
 
         function showLoadingSpinner() {
