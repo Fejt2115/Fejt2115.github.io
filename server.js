@@ -60,26 +60,26 @@ app.post('/obliczenia', async (req, res) => {
             AxpoOH
         });
 
-       const mailContent = `
-            Enea Netto Strefa 1: ${EneaNettoStrefa1}
-            Enea Netto Strefa 2: ${EneaNettoStrefa2}
-            Enea Netto Strefa 3: ${EneaNettoStrefa3}
-            Enea OH: ${EneaOH}
+        //const mailContent = `
+        //    Enea Netto Strefa 1: ${EneaNettoStrefa1}
+        //    Enea Netto Strefa 2: ${EneaNettoStrefa2}
+        //    Enea Netto Strefa 3: ${EneaNettoStrefa3}
+        //    Enea OH: ${EneaOH}
 
-            Axpo Netto Strefa 1: ${AxpoNettoStrefa1}
-            Axpo Netto Strefa 2: ${AxpoNettoStrefa2}
-            Axpo Netto Strefa 3: ${AxpoNettoStrefa3}
-            Axpo OH: ${AxpoOH}
-        `;
+        //    Axpo Netto Strefa 1: ${AxpoNettoStrefa1}
+        //   Axpo Netto Strefa 2: ${AxpoNettoStrefa2}
+        //    Axpo Netto Strefa 3: ${AxpoNettoStrefa3}
+        //    Axpo OH: ${AxpoOH}
+        //`;
 
         // Konfiguruj transporter mailowy
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'paktofonikka@gmail.com',
-                pass: ''
-            }
-        });
+        //const transporter = nodemailer.createTransport({
+        //    service: 'gmail',
+        //    auth: {
+        //        user: 'paktofonikka@gmail.com',
+        //        pass: ''
+        //    }
+        //});
 
         // Przygotuj opcje maila
         //const mailOptions = {
