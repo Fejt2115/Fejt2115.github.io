@@ -20,17 +20,17 @@ app.post('/obliczenia', async (req, res) => {
         const { zuzycie, czasTrwaniaUmowy, grupaTaryfowa} = req.body;
 
         // Wczytaj arkusz z pliku Excel
-        const workbook = xlsx.readFile(assets/excel/kalk.xlsx);
+        const workbook = xlsx.readFile('./assets/excel/kalk.xlsx');
         const sheetName = 'Kalkulator'; // Podaj nazwę arkusza w pliku Excel
 
-        setValueToCell(workbook, sheetName, 'C6', valuesToInsert.grupaTaryfowa);
-        setValueToCell(workbook, sheetName, 'I6', valuesToInsert.grupaTaryfowa);
+        setValueToCell(workbook, sheetName, 'C6', grupaTaryfowa);
+        setValueToCell(workbook, sheetName, 'I6', grupaTaryfowa);
 
-        setValueToCell(workbook, sheetName, 'C7', valuesToInsert.czasTrwaniaUmowy);
-        setValueToCell(workbook, sheetName, 'I7', valuesToInsert.czasTrwaniaUmowy);
+        setValueToCell(workbook, sheetName, 'C7', czasTrwaniaUmowy);
+        setValueToCell(workbook, sheetName, 'I7', czasTrwaniaUmowy);
 
-        setValueToCell(workbook, sheetName, 'C10', valuesToInsert.zuzycie);
-        setValueToCell(workbook, sheetName, 'I10', valuesToInsert.zuzycie);
+        setValueToCell(workbook, sheetName, 'C10', zuzycie);
+        setValueToCell(workbook, sheetName, 'I10', zuzycie);
 
 
 
