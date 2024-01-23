@@ -64,8 +64,9 @@
     </div>
     <div id="loading-spinner" class="spinner" style="display: none;"></div>
     <script>
+        let wynikiObliczen = null;
         async function submitForm(event) {
-            let wynikiObliczen = null;
+
             showLoadingSpinner();
             event.preventDefault();
             const zuzycie = parseFloat(document.getElementById('zuzycie').value);
