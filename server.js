@@ -10,6 +10,8 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+
+
 function getValueFromCell(workbook, sheetName, cellAddress) {
     const sheet = workbook.Sheets[sheetName];
     const cell = sheet[cellAddress];
@@ -85,15 +87,16 @@ app.post('/wyslij-mail', async (req, res) => {
 
         // Przygotuj opcje maila
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.ethereal.email',
+            port: 587,
             auth: {
-                user: 'twoj-email@gmail.com',  // Podaj swój adres e-mail
-                pass: 'twoje-haslo',           // Podaj swoje hasło
-            },
+                user: 'abby.rath@ethereal.email',
+                pass: 'JPbcsywyUfZRfAAdCe'
+            }
         });
 
         const mailOptions = {
-            from: 'twoj-email@gmail.com',
+            from: 'fejcikk@gmail.com',
             to: 'mszoltyski@gmail.com',
             subject: 'Obliczenie wyników',
             text: `Treść wiadomości:\nNIP: "${nip}"\nNumer telefonu: "${nrTelefonu}"
