@@ -3,6 +3,9 @@ import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
 import xlsx from 'xlsx';
+var FormulaParser = require('hot-formula-parser').Parser;
+
+var parser = new FormulaParser();
 
 const app = express();
 const port = 3000;
@@ -48,8 +51,20 @@ app.post('/obliczenia', async (req, res) => {
 
 
 
+        //parser.on('callCellValue', function(cellCoord, done) {
+        //    var worksheet = workbook.getWorksheet(2);
+        //    var row = worksheet.getRow(cellCoord.row.index);
+        //    var cellValue = row.getCell(cellCoord.column.index).value;
+        //    done(cellValue);
+        //  });
+      //
+        //  var formula = row.getCell(3).formula; // Pobranie formuły z komórki C1
+        //  var result = parser.parse(formula);
+        //  console.log(result.result); // Wyświetlenie wyniku obliczenia formuły
+        //});
         
         // Pobierz wartości z komórek
+
         const EneaNettoStrefa1 = getValueFromCell(workbook, sheetName, 'C13');
         const EneaNettoStrefa2 = getValueFromCell(workbook, sheetName, 'C14');
         const EneaNettoStrefa3 = getValueFromCell(workbook, sheetName, 'C15');
