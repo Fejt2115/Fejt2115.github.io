@@ -60,39 +60,39 @@ app.post('/obliczenia', async (req, res) => {
 
         
         // zrekalkuluj wszystkie inne
-        formulla = sheetName['D13'].f;
+        formulla = workbook.Sheets[sheetName]['D13'].f;
             parser.parse(formulla);
-        formulla = sheetName['E13'].f;
+        formulla = workbook.Sheets[sheetName]['E13'].f;
             parser.parse(formulla);
-        formulla = sheetName['F13'].f;
-            parser.parse(formulla);
-
-        formulla = sheetName['D14'].f;
-            parser.parse(formulla);
-        formulla = sheetName['E14'].f;
+        formulla = workbook.Sheets[sheetName]['F13'].f;
             parser.parse(formulla);
 
-        formulla = sheetName['D15'].f;
+        formulla = workbook.Sheets[sheetName]['D14'].f;
             parser.parse(formulla);
-        formulla = sheetName['E15'].f;
+        formulla = workbook.Sheets[sheetName]['E14'].f;
+            parser.parse(formulla);
+
+        formulla = workbook.Sheets[sheetName]['D15'].f;
+            parser.parse(formulla);
+        formulla = workbook.Sheets[sheetName]['E15'].f;
             parser.parse(formulla);
 
 
-        formulla = sheetName['J13'].f;
+        formulla = workbook.Sheets[sheetName]['J13'].f;
             parser.parse(formulla);
-        formulla = sheetName['K13'].f;
+        formulla = workbook.Sheets[sheetName]['K13'].f;
             parser.parse(formulla);
-        formulla = sheetName['L13'].f;
-            parser.parse(formulla);
-
-        formulla = sheetName['J14'].f;
-            parser.parse(formulla);
-        formulla = sheetName['K14'].f;
+        formulla = workbook.Sheets[sheetName]['L13'].f;
             parser.parse(formulla);
 
-        formulla = sheetName['J15'].f;
+        formulla = workbook.Sheets[sheetName]['J14'].f;
             parser.parse(formulla);
-        formulla = sheetName['K15'].f;
+        formulla = workbook.Sheets[sheetName]['K14'].f;
+            parser.parse(formulla);
+
+        formulla = workbook.Sheets[sheetName]['J15'].f;
+            parser.parse(formulla);
+        formulla = workbook.Sheets[sheetName]['K15'].f;
             parser.parse(formulla);
 
         
