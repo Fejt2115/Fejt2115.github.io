@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
 import xlsx from 'xlsx';
-var FormulaParser = require('hot-formula-parser').Parser;
+import { Parser as FormulaParser } from 'hot-formula-parser';
 
 var parser = new FormulaParser();
 let formulla;
