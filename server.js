@@ -55,39 +55,39 @@ app.post('/obliczenia', async (req, res) => {
         
         // zrekalkuluj wszystkie inne
         formulla = workbook.Sheets[sheetName]['D13'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'D13', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['E13'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'E13', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['F13'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'F13', parser.parse(formulla).result);
 
         formulla = workbook.Sheets[sheetName]['D14'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'D14', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['E14'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'E14', parser.parse(formulla).result);
 
         formulla = workbook.Sheets[sheetName]['D15'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'D15', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['E15'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'E15', parser.parse(formulla).result);
 
 
         formulla = workbook.Sheets[sheetName]['J13'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'J13', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['K13'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'K13', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['L13'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'L13', parser.parse(formulla).result);
 
         formulla = workbook.Sheets[sheetName]['J14'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'J14', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['K14'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'K14', parser.parse(formulla).result);
 
         formulla = workbook.Sheets[sheetName]['J15'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'J15', parser.parse(formulla).result);
         formulla = workbook.Sheets[sheetName]['K15'].f;
-            parser.parse(formulla);
+        setValueToCell(workbook, sheetName, 'K15', parser.parse(formulla).result);
 
         
         //Pobierz wartości z komórek
