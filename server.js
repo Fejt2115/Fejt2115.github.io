@@ -123,7 +123,7 @@ app.post('/obliczenia', async (req, res) => {
 
 app.post('/wyslij-mail', async (req, res) => {
     try {
-        const { nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa, wynikiObliczen} = req.body;
+        const { nip, email, nrTelefonu, zuzycie, czasTrwaniaUmowy, grupaTaryfowa} = req.body;
 
         // Przygotuj opcje maila
         const transporter = nodemailer.createTransport({
@@ -157,10 +157,10 @@ app.post('/wyslij-mail', async (req, res) => {
             \nEnea Strefa3: ${EneaNettoStrefa3}
             \nEnea OH: ${EneaOH}
 
-            \nEnea Strefa1: ${AxpoNettoStrefa1}
-            \nEnea Strefa2: ${AxpoNettoStrefa2}
-            \nEnea Strefa3: ${AxpoNettoStrefa3}
-            \nEnea OH: ${AxpoOH}`
+            \nAxpo Strefa1: ${AxpoNettoStrefa1}
+            \nAxpo Strefa2: ${AxpoNettoStrefa2}
+            \nAxpo Strefa3: ${AxpoNettoStrefa3}
+            \nAxpo OH: ${AxpoOH}`
         };
         
         // Wyślij maila
