@@ -52,39 +52,39 @@ app.post('/obliczenia', async (req, res) => {
 
         
         // zrekalkuluj wszystkie inne
-        formulla = sheet['D13'].f;
+        formulla = sheetName['D13'].f;
             parser.parse(formulla);
-        formulla = sheet['E13'].f;
+        formulla = sheetName['E13'].f;
             parser.parse(formulla);
-        formulla = sheet['F13'].f;
-            parser.parse(formulla);
-
-        formulla = sheet['D14'].f;
-            parser.parse(formulla);
-        formulla = sheet['E14'].f;
+        formulla = sheetName['F13'].f;
             parser.parse(formulla);
 
-        formulla = sheet['D15'].f;
+        formulla = sheetName['D14'].f;
             parser.parse(formulla);
-        formulla = sheet['E15'].f;
+        formulla = sheetName['E14'].f;
+            parser.parse(formulla);
+
+        formulla = sheetName['D15'].f;
+            parser.parse(formulla);
+        formulla = sheetName['E15'].f;
             parser.parse(formulla);
 
 
-        formulla = sheet['J13'].f;
+        formulla = sheetName['J13'].f;
             parser.parse(formulla);
-        formulla = sheet['K13'].f;
+        formulla = sheetName['K13'].f;
             parser.parse(formulla);
-        formulla = sheet['L13'].f;
-            parser.parse(formulla);
-
-        formulla = sheet['J14'].f;
-            parser.parse(formulla);
-        formulla = sheet['K14'].f;
+        formulla = sheetName['L13'].f;
             parser.parse(formulla);
 
-        formulla = sheet['J15'].f;
+        formulla = sheetName['J14'].f;
             parser.parse(formulla);
-        formulla = sheet['K15'].f;
+        formulla = sheetName['K14'].f;
+            parser.parse(formulla);
+
+        formulla = sheetName['J15'].f;
+            parser.parse(formulla);
+        formulla = sheetName['K15'].f;
             parser.parse(formulla);
 
         
