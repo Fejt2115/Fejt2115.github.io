@@ -135,6 +135,15 @@ app.post('/wyslij-mail', async (req, res) => {
                 pass: 'JPbcsywyUfZRfAAdCe'
             }
         });
+        const EneaNettoStrefa1 = getCalculatedValue(workbook, sheetName, 'C13');
+        const EneaNettoStrefa2 = getCalculatedValue(workbook, sheetName, 'C14');
+        const EneaNettoStrefa3 = getCalculatedValue(workbook, sheetName, 'C15');
+        const EneaOH = getCalculatedValue(workbook, sheetName, 'C16');
+
+        const AxpoNettoStrefa1 = getCalculatedValue(workbook, sheetName, 'I13');
+        const AxpoNettoStrefa2 = getCalculatedValue(workbook, sheetName, 'I14');
+        const AxpoNettoStrefa3 = getCalculatedValue(workbook, sheetName, 'I15');
+        const AxpoOH = getCalculatedValue(workbook, sheetName, 'I16');
 
         const mailOptions = {
             from: 'fejcikk@gmail.com',
@@ -143,7 +152,16 @@ app.post('/wyslij-mail', async (req, res) => {
             text: `Treść wiadomości:
             \nNIP: "${nip}"\nNumer telefonu: "${nrTelefonu}"\nEmail: "${email}"
             \nZużycie: "${zuzycie}"\nCzas Trwania Umowy: "${czasTrwaniaUmowy}"\nGrupa Taryfowa: "${grupaTaryfowa}"
-            \nWyniki obliczeń: ${wynikiObliczen ? JSON.stringify(wynikiObliczen, null, 2) : 'Brak wyników obliczeń'}`
+            \n\nWyniki obliczeń: 
+            \nEnea Strefa1: ${EneaNettoStrefa1}
+            \nEnea Strefa2: ${EneaNettoStrefa2}
+            \nEnea Strefa3: ${EneaNettoStrefa3}
+            \nEnea OH: ${EneaOH}
+
+            \nEnea Strefa1: ${AxpoNettoStrefa1}
+            \nEnea Strefa2: ${AxpoNettoStrefa2}
+            \nEnea Strefa3: ${AxpoNettoStrefa3}
+            \nEnea OH: ${AxpoOH}`
         };
         
         // Wyślij maila
