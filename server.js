@@ -101,7 +101,6 @@ app.post('/obliczenia', async (req, res) => {
         const AxpoNettoStrefa3 = getCalculatedValue(workbook, sheetName, 'I15');
         const AxpoOH = getCalculatedValue(workbook, sheetName, 'I16');
 
-        // Wykonaj resztę obliczeń
 
         // Odpowiedz klientowi
         res.json({
