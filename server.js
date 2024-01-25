@@ -6,6 +6,7 @@ import xlsx from 'xlsx';
 var FormulaParser = require('hot-formula-parser').Parser;
 
 var parser = new FormulaParser();
+let formulla;
 
 const app = express();
 const port = 3000;
@@ -15,10 +16,10 @@ app.use(bodyParser.json());
 
 
 
-function getValueFromCell(workbook, sheetName, cellAddress) {
-    const sheet = workbook.Sheets[sheetName];
-    const cell = sheet[cellAddress];
-    return cell ? cell.v : null;
+function getCalculatedValue(sheet, cellAddress) {
+    const formula = sheet[cellAddress].f; // Pobierz formułę
+    const result = parser.parse(formula);
+    return result.result;
 }
 
 function setValueToCell(workbook, sheetName, cellAddress, value) {
@@ -49,31 +50,54 @@ app.post('/obliczenia', async (req, res) => {
         setValueToCell(workbook, sheetName, 'C10', zuzycie);
         setValueToCell(workbook, sheetName, 'I10', zuzycie);
 
-
-
-        //parser.on('callCellValue', function(cellCoord, done) {
-        //    var worksheet = workbook.getWorksheet(2);
-        //    var row = worksheet.getRow(cellCoord.row.index);
-        //    var cellValue = row.getCell(cellCoord.column.index).value;
-        //    done(cellValue);
-        //  });
-      //
-        //  var formula = row.getCell(3).formula; // Pobranie formuły z komórki C1
-        //  var result = parser.parse(formula);
-        //  console.log(result.result); // Wyświetlenie wyniku obliczenia formuły
-        //});
         
-        // Pobierz wartości z komórek
+        // zrekalkuluj wszystkie inne
+        formulla = sheet['D13'].f;
+            parser.parse(formulla);
+        formulla = sheet['E13'].f;
+            parser.parse(formulla);
+        formulla = sheet['F13'].f;
+            parser.parse(formulla);
 
-        const EneaNettoStrefa1 = getValueFromCell(workbook, sheetName, 'C13');
-        const EneaNettoStrefa2 = getValueFromCell(workbook, sheetName, 'C14');
-        const EneaNettoStrefa3 = getValueFromCell(workbook, sheetName, 'C15');
-        const EneaOH = getValueFromCell(workbook, sheetName, 'C16');
+        formulla = sheet['D14'].f;
+            parser.parse(formulla);
+        formulla = sheet['E14'].f;
+            parser.parse(formulla);
 
-        const AxpoNettoStrefa1 = getValueFromCell(workbook, sheetName, 'I13');
-        const AxpoNettoStrefa2 = getValueFromCell(workbook, sheetName, 'I14');
-        const AxpoNettoStrefa3 = getValueFromCell(workbook, sheetName, 'I15');
-        const AxpoOH = getValueFromCell(workbook, sheetName, 'I16');
+        formulla = sheet['D15'].f;
+            parser.parse(formulla);
+        formulla = sheet['E15'].f;
+            parser.parse(formulla);
+
+
+        formulla = sheet['J13'].f;
+            parser.parse(formulla);
+        formulla = sheet['K13'].f;
+            parser.parse(formulla);
+        formulla = sheet['L13'].f;
+            parser.parse(formulla);
+
+        formulla = sheet['J14'].f;
+            parser.parse(formulla);
+        formulla = sheet['K14'].f;
+            parser.parse(formulla);
+
+        formulla = sheet['J15'].f;
+            parser.parse(formulla);
+        formulla = sheet['K15'].f;
+            parser.parse(formulla);
+
+        
+        //Pobierz wartości z komórek
+        const EneaNettoStrefa1 = getCalculatedValue(workbook, sheetName, 'C13');
+        const EneaNettoStrefa2 = getCalculatedValue(workbook, sheetName, 'C14');
+        const EneaNettoStrefa3 = getCalculatedValue(workbook, sheetName, 'C15');
+        const EneaOH = getCalculatedValue(workbook, sheetName, 'C16');
+
+        const AxpoNettoStrefa1 = getCalculatedValue(workbook, sheetName, 'I13');
+        const AxpoNettoStrefa2 = getCalculatedValue(workbook, sheetName, 'I14');
+        const AxpoNettoStrefa3 = getCalculatedValue(workbook, sheetName, 'I15');
+        const AxpoOH = getCalculatedValue(workbook, sheetName, 'I16');
 
         // Wykonaj resztę obliczeń
 
