@@ -16,10 +16,18 @@ app.use(bodyParser.json());
 
 
 
-function getCalculatedValue(sheet, cellAddress) {
-    const formula = sheet[cellAddress].f; // Pobierz formułę
-    const result = parser.parse(formula);
-    return result.result;
+function getCalculatedValue(workbook, sheetName, cellAddress) {
+    const sheet = workbook.Sheets[sheetName];
+    const cell = sheet[cellAddress];
+
+    if (cell && cell.f) {
+        const formula = cell.f;
+        const result = parser.parse(formula);
+        return result.result;
+    } else {
+        console.error(`Formula not found for cell ${cellAddress}`);
+        return null; // You can handle this case based on your requirements
+    }
 }
 
 function setValueToCell(workbook, sheetName, cellAddress, value) {
