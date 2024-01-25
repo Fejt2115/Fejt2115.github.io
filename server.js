@@ -11,6 +11,9 @@ let formulla;
 const app = express();
 const port = 3000;
 
+const workbook = xlsx.readFile('./assets/excel/kalk.xlsx');
+const sheetName = 'Kalkulator';
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -39,9 +42,6 @@ app.post('/obliczenia', async (req, res) => {
         // Pobierz dane z żądania
         const { zuzycie, czasTrwaniaUmowy, grupaTaryfowa} = req.body;
 
-        // Wczytaj arkusz z pliku Excel
-        const workbook = xlsx.readFile('./assets/excel/kalk.xlsx');
-        const sheetName = 'Kalkulator'; // Podaj nazwę arkusza w pliku Excel
 
         setValueToCell(workbook, sheetName, 'C6', grupaTaryfowa);
         setValueToCell(workbook, sheetName, 'I6', grupaTaryfowa);
