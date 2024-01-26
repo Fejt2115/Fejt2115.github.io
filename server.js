@@ -57,74 +57,74 @@ app.post('/obliczenia', async (req, res) => {
         formulla = workbook.Sheets[sheetName]['D13'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'D13', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
         
         formulla = workbook.Sheets[sheetName]['E13'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'E13', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['E13'].v);
         
         formulla = workbook.Sheets[sheetName]['F13'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'F13', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['F13'].v);
 
         formulla = workbook.Sheets[sheetName]['D14'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'D14', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D14'].v);
         
         formulla = workbook.Sheets[sheetName]['E14'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'E14', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['E14'].v);
 
         formulla = workbook.Sheets[sheetName]['D15'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'D15', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
         
         formulla = workbook.Sheets[sheetName]['E15'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'E15', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
 
 
         formulla = workbook.Sheets[sheetName]['J13'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'J13', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
         
         formulla = workbook.Sheets[sheetName]['K13'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'K13', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
         
         formulla = workbook.Sheets[sheetName]['L13'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'L13', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
 
         
         formulla = workbook.Sheets[sheetName]['J14'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'J14', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
         
         formulla = workbook.Sheets[sheetName]['K14'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'K14', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
         
         formulla = workbook.Sheets[sheetName]['J15'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'J15', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
         
         formulla = workbook.Sheets[sheetName]['K15'].f;
         wynik = parser.parse(formulla).result;
         setValueToCell(workbook, sheetName, 'K15', wynik);
-        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik);
+        console.log("Wstawionoo formułe ", formulla, "Komorki, Wynik parse: ", wynik, "Co jest w komorce: ", workbook.Sheets[sheetName]['D13'].v);
 
         
         //Pobierz wartości z komórek
